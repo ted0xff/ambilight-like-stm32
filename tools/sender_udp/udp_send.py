@@ -9,11 +9,11 @@ import struct
 import sys
 import socket
 
-if ( len(sys.argv) < 5 ):
+if ( len(sys.argv) < 2 ):
     print ("""\
-    This script need 4 parameters
+    This script need at least 1 parameter : the command
 
-    Usage:  theScript idx r g b
+    Usage:  theScript <cmd> < params ...>
     """);
     quit();
 
@@ -37,14 +37,43 @@ def setAllPixels(r,g,b):
 
 
 
-setAllPixels( int(sys.argv[1]), int(sys.argv[2]),int(sys.argv[3]) );
-quit()
+if sys.argv[1] == "pix":
+    if ( len(sys.argv) < 6 ):
+        print ("""\
+        This script need 4 parameters
 
-## call
-setPixel( int(sys.argv[1]), int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]));
+        Usage:  Script.py pix idx r g b
+        """);
+        quit();
+    else:
+        setPixel( int(sys.argv[2]), int(sys.argv[3]),int(sys.argv[4]),int(sys.argv[5]));
+        quit();
 
+if sys.argv[1] == "all":
+    if ( len(sys.argv) < 5 ):
+        print ("""\
+        This script need 5 parameters
 
-## faire une animation simple
-for x in range(30, 40):
-    time.sleep(0.2);
-    setPixel( x, int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]) );
+        Usage:  Script.py all  r g b
+        """);
+        quit();
+    else:
+        setAllPixels( int(sys.argv[2]), int(sys.argv[3]),int(sys.argv[4]) );
+        quit();
+
+if sys.argv[1] == "anim":
+    if ( len(sys.argv) < 5 ):
+        print ("""\
+        This script need 5 parameters
+
+        Usage:  Script.py anim  r g b
+        """);
+        quit();
+    else:
+        ## faire une animation simple
+        for x in range(30, 40):
+            time.sleep(0.2);
+            setPixel( x, int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]) );
+        quit();
+
+print("Failure: command not found .");
