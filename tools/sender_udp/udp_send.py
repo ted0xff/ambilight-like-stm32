@@ -9,9 +9,18 @@ import struct
 import sys
 import socket
 
+if ( len(sys.argv) < 5 ):
+    print ("""\
+    This script need 4 parameters
+
+    Usage:  theScript idx r g b
+    """);
+    quit();
+
+
 sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM);
 
-## 4 arguments :  idx 32bits, r,g,b 8bits
+## 4 arguments :  idx (32bits), r,g,b (8bits)
 def setPixel(idx, r,g,b):
     pix_count=1
     pix_pos=idx
@@ -19,7 +28,8 @@ def setPixel(idx, r,g,b):
     sock.sendto(message , ("127.0.0.1",1200) );
 
 
-# applique la commande all pixels 1 couleur
+## applique la commande all pixels 1 couleur
+## 3 arguments :   r,g,b (8bits)
 def setAllPixels(r,g,b):
     cmde=1
     message=struct.pack( '<3B1h3B', ord('A'),ord('d'),ord('B'), cmde, r,g,b );
@@ -38,4 +48,3 @@ setPixel( int(sys.argv[1]), int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]));
 for x in range(30, 40):
     time.sleep(0.2);
     setPixel( x, int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]) );
-
