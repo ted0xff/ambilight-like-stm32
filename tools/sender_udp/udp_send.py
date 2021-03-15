@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 #
-# takes 4 arguments : 32bits idx  + rgb as decimal
 # n'implémente qu'un pseudo protocol !
-# envoi un seul pixel à la fois
+# test basic du simulateur, et validation d'animations en python
 
 import time
 import struct
