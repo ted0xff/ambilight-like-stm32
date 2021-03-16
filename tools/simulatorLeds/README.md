@@ -26,4 +26,4 @@ Command to send a led command
 * AdB <16 its command id> < ... optional specific parameters >
 * AdB <0x0001> r g b : Command to set a solid color to all leds of strip
 
-See tools/sender_udp/ C & Python3 implementation examples.
+See [tools/sender_udp/](../sender_udp) C & Python3 implementation examples.
